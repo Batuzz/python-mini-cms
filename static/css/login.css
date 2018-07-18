@@ -1,0 +1,76 @@
+@keyframes service{
+    0%{background-color: rgb(152, 96, 71);}
+    100%{
+        background-color: rgb(70, 44, 32);
+    }
+}
+
+
+body{
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    background-image: url(../img/linas-bam-223729.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-size: 30px;
+}
+
+#box{
+    margin:0 auto;
+    width: 600px;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 4px;
+    padding: 5px;
+}
+#box p{
+    text-align: center;
+    color: wheat;
+    font-size: 25px;
+    border-bottom: 2px solid #ffa700;
+    text-decoration: none;
+    
+}
+.service {
+    width: 60%;
+    color: white;
+    height: 55px;
+    background-color: rgb(152, 96, 71);
+    vertical-align: middle;
+    margin:0 auto;
+    text-align: center;
+    border-radius: 50px;
+    cursor:pointer;
+    margin-bottom: 25px;
+    font-size: 15px;
+}
+.service:hover{
+    animation-name: service;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+.service a{
+    color: white;
+}
+a{
+    text-decoration: none;
+}
+.center{
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+}
+input{
+    border-radius: 5px;
+    background-color: rgb(227, 144, 107);
+    color:white;
+    padding: 5px;
+}
+
+p a {
+    text-decoration: none;
+    font-size: 30px;
+    border: none;
+    color: black;
+}

@@ -1,0 +1,134 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+#desktop{
+    background-image: url("../img/brady-bellini-191086.jpg");
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 95%;
+    z-index: -1;
+}
+#toolbar{
+    height: 5%;
+    width:100%;
+    background-color: black;
+    z-index: -1;
+}
+.icon img{
+    height: 60px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+}
+.icon{
+    padding: 15px;
+    width:100px;
+}
+.sticker {
+  padding-top: 20px;
+  background: #ffffff;
+  min-height: 100px;
+  min-width: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1px solid #000000;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+  width:500px;
+  height: 250px;
+}
+
+.sticker .bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  background: #747474;
+  width: 100%;
+}
+
+.sticker textarea {
+  padding: 3px 10px;
+  box-sizing: border-box;
+  min-height: 100px;
+  min-width: 100px;
+  background: transparent;
+  border: none;
+}
+
+.sticker .bar:hover {
+  cursor: pointer;
+}
+
+.sticker:hover {
+  z-index: 1;
+}
+button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+textbox{
+    content: "Siemanko";
+}
+#toolbar img{
+    height:85%;
+    padding-top: 2px;
+
+}
+#nav{
+    position:fixed;
+    height: 60%;
+    width: 40%;
+    bottom: 5%;
+    z-index: 20;
+    background-color: rgba(0,0,0,0.9);
+    color: white;
+}
+#date{
+    position: absolute;
+    color: white;
+    right:0;
+    bottom:0;
+    padding: 1px;
+    margin: 0;
+    display: inline;
+    text-align: center;
+}
+#navcontent1{
+    text-align: center;
+    width: 38%;
+    
+}
+#navcontent2{
+    text-align: center;
+    width: 58%;
+    margin-right:0;
+    padding: 0;
+    float: right;
+    margin-top: -145px;
+}
+.navcontentitem{
+    height: 40px;
+    vertical-align: middle;
+    margin-bottom: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2px;
+}
+.navcontentitem img{
+    background-color: #ff0000;
+    padding: 2px;
+}
+.navcontentitem a{
+    margin-top: 0;
+}
+.navcontentitem:hover{
+background-color: rgba(255, 255, 255, 0.5);
+}

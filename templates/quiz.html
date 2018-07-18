@@ -1,0 +1,67 @@
+<html>
+    <head>
+
+        <!-- META TAGS -->
+        <meta lang="PL"/>
+        <meta charset="UTF-8"/>
+        <meta name="description" content="" />
+        <meta name="author" content="Bartosz Studnik, Kacper Mandla" />
+        <meta name="keywords" content="" />
+
+        <!-- CSS STYLESHEET -->
+        {% if css_name %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename=css_name) }}" />
+        {% else %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/css.css') }}" />
+        {% endif %}
+
+
+        <!-- FONTS -->
+       <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+        <!-- DESCRIPTION -->
+        {% if title %}
+            <title>{{ title }}</title>
+        {% else %}
+            <title>{{ const[session['lang']].main_title }}</title>
+        {% endif %}
+    </head>
+    <body>
+<br />
+<br />
+<br />
+<section id="content">
+    {% if session['lang'] == 'pl' %}
+        <p>{{ quiz.name }}</p>
+    {% else %}
+        <p>{{ quiz.name_en }}</p>
+    {% endif %}
+
+    <br>
+    <form action="" method="post" name="quiz">
+        {% if session['lang'] == 'pl' %}
+            {% for q in quiz.questions %}
+                <h2>{{ const[session['lang']].question }} {{ loop.index }}</h2>
+                <h3>{{ q.question }}</h3>
+                {% for a in q.answers %}
+                    <input type="radio" name="{{ a.quiz_question_id }}" value="{{ a.id }}"/> {{ a.answer }} <br />
+                {% endfor %}
+            {% endfor %}
+        {% else %}
+            {% for q in quiz.questions %}
+                <h2>{{ const[session['lang']].question }} {{ loop.index }}</h2>
+                <h3>{{ q.question_en }}</h3>
+                {% for a in q.answers %}
+                    <input type="radio" name="{{ a.quiz_question_id }}" value="{{ a.id }}"/> {{ a.answer_en }} <br />
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+        <br>
+        <input type="submit" value="{{ const[session['lang']].save_answers }}" class="but"/>
+        <br>
+        <br>
+    </form>
+</section>
+    </body>
+</html>

@@ -1,0 +1,89 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ const[session['lang']].page_edit }}</h1>
+    <form action="" method="post" name="edit_page">
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+                <td>{{ const[session['lang']].page_link }}</td>
+                <td>
+                    {{ form.link(size=50) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].page_title }}</td>
+                <td>
+                    {{ form.title(size=50) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].page_title_en }}</td>
+                <td>
+                    {{ form.title_en(size=50) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].page_content }}</td>
+                <td>
+                    {{ form.content }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].page_content_en }}</td>
+                <td>
+                    {{ form.content_en }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].page_img_name }}</td>
+                <td>
+                    {{ form.img_name(size=50) }}
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="{{ const[session['lang']].save_changes }}"></td>
+            </tr>
+        </table>
+<br>
+<br>
+<br>
+        <table style="margin-left: 10%; margin-right: 10%;" id="aligncenter">
+            <tr>
+                <th>ID</th>
+                <th>{{ const[session['lang']].page_link }}</th>
+                <th>{{ const[session['lang']].page_title }}</th>
+                <th>{{ const[session['lang']].page_title_en }}</th>
+                <th>{{ const[session['lang']].page_content }}</th>
+                <th>{{ const[session['lang']].page_content_en }}</th>
+                <th>{{ const[session['lang']].page_img_name }}</th>
+                <th>{{ const[session['lang']].edit }}</th>
+                <th>{{ const[session['lang']].delete }}</th>
+            </tr>
+            {% for p in page %}
+            <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.link }}</td>
+                <td>{{ p.title }}</td>
+                <td>{{ p.title_en }}</td>
+                <td>{{ p.content }}</td>
+                <td>{{ p.content_en }}</td>
+                <td><img src="{{ url_for('static', filename='img/' + p.img_name) }}" style="max-width: 100px; max-height: 100px;"/></td>
+                <td>
+                    <a href="/admin/page/edit/{{p.id}}">
+                        <img src="{{ url_for('static', filename='img/edit.png') }}" style="width: 50px; height: 50px;"/>
+                    </a>
+                </td>
+                <td>
+                    <a href="/admin/page/delete/{{p.id}}">
+                        <img src="{{ url_for('static', filename='img/delete.png') }}" style="width: 50px; height: 50px;"/>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    {% include 'admin_panel.html' %}
+{% endblock %}

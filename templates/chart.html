@@ -1,0 +1,173 @@
+<html>
+    <head>
+
+        <!-- META TAGS -->
+        <meta lang="PL"/>
+        <meta charset="UTF-8"/>
+        <meta name="description" content="" />
+        <meta name="author" content="Bartosz Studnik, Kacper Mandla" />
+        <meta name="keywords" content="" />
+
+        <!-- CSS STYLESHEET -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/chart.css') }}" />
+
+        <!-- FONTS -->
+       <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+        <!-- DESCRIPTION -->
+        <title>{{ const[session['lang']].results }}</title>
+
+
+        <!-- SCRIPTY -->
+        <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+
+
+    </head>
+    <body><br><br><br>
+        <div id="chart">
+        {% if session['lang'] == 'pl' %}
+            <h1>{{ quiz.name }}</h1>
+            {% for q in quiz.questions %}
+                {% set quiz_loop = loop %}
+                    <br><br>
+                    <h4>{{ const[session['lang']].question }} {{ quiz_loop.index }}</h4><br>
+                        <a style="color: white;">{{ q.question }}</a><br>
+                    <h5>{{ const[session['lang']].your_answer }}:&nbsp;</h5>
+                        <a style="color:wheat;">{{ answers[loop.index0].quiz_answer_option.answer }} </a>
+                    <br><br>
+                    <canvas id="{{ q. id }}"></canvas>
+                    <script>
+                    var ctx = document.getElementById("{{ q.id }}");
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                        labels: [{% for a in q.answers %}
+                                    {% if loop.last %}
+                                        "{{ a.answer }}"
+                                    {% else %}
+                                        "{{ a.answer }}",
+                                    {% endif %}
+                                {% endfor %}],
+                        datasets: [{
+                        label: 'ilość głosów',
+                        data: [{% for data in answer_data[quiz_loop.index0] %}
+                                    {% if loop.last %}
+                                        "{{ data }}"
+                                    {% else %}
+                                        "{{ data }}",
+                                    {% endif %}
+                                {% endfor %}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 102, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgb(80, 192, 75)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                            borderWidth: 1
+                    }]
+                        },
+                        options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                        }
+                    });
+                    var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: options
+            });
+                </script>
+            {% endfor %}
+    {% else %}
+            <h1>{{ quiz.name_en }}</h1>
+            {% for q in quiz.questions %}
+                {% set quiz_loop = loop %}
+                    <br><br>
+                    <h4>{{ const[session['lang']].question }} {{ loop.index }}</h4><br>
+                        <a style="color: white;">{{ q.question_en }}</a><br>
+                    <h5>{{ const[session['lang']].your_answer }}:&nbsp;</h5>
+                        <a style="color:wheat;">{{ answers[loop.index0].quiz_answer_option.answer_en }} </a>
+                    <br><br>
+                    <canvas id="{{ q. id }}"></canvas>
+                    <script>
+                var ctx = document.getElementById("{{ q.id }}");
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                    labels: [{% for a in q.answers %}
+                                {% if loop.last %}
+                                    "{{ a.answer_en }}"
+                                {% else %}
+                                    "{{ a.answer_en }}",
+                                {% endif %}
+                            {% endfor %}],
+                    datasets: [{
+                    label: '# of Votes',
+                    data: [{% for data in answer_data[quiz_loop.index0] %}
+                                {% if loop.last %}
+                                    "{{ data }}"
+                                {% else %}
+                                    "{{ data }}",
+                                {% endif %}
+                            {% endfor %}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 206, 86, 0.5)',
+                        'rgba(75, 192, 102, 0.5)',
+                        'rgba(153, 102, 255, 0.5)',
+                        'rgba(255, 159, 64, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgb(80, 192, 75)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                        borderWidth: 1
+                }]
+                    },
+                    options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+                    }
+                });
+                var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+            </script>
+            {% endfor %}
+    {% endif %}
+<br>
+<br>
+<br>
+    <h1><a href="../">Wróć</a></h1>
+
+    </div>
+
+    </body>
+</html>

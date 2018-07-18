@@ -1,0 +1,27 @@
+<html>
+    <head>
+
+        <!-- META TAGS -->
+        <meta lang="PL"/>
+        <meta charset="UTF-8"/>
+        <meta name="description" content="" />
+        <meta name="author" content="Bartosz Studnik, Kacper Mandla" />
+        <meta name="keywords" content="" />
+        
+        <!-- CSS STYLESHEET -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/csslang.css') }}" />
+        
+        <!-- FONTS -->
+       <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+        
+        <!-- DESCRIPTION -->
+        <title>Uzależnienia</title>
+    </head>
+    <body>
+            <h1> Choose your language</h1><hr>
+            <h1> &nbsp; Wybierz swój język</h1>
+        <section id="buttony"><br><br><br><br><br><br>
+            <a href="/index/en"><img src="{{ url_for('static', filename='img/english_button.png') }}"/></a> &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/index/pl"><img src="{{ url_for('static', filename='img/polski_button.png') }}"/></a>
+        </section>
+    </body>

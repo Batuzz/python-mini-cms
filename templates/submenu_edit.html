@@ -1,0 +1,82 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{{ const[session['lang']].submenu_edit }}</h1>
+    <form action="" method="post" name="edit_submenu">
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+                <td>{{ const[session['lang']].submenu_sequence }}</td>
+                <td>
+                    {{ form.sequence(size=50) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].submenu_link }}</td>
+                <td>
+                    {{ form.link(size=50) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].submenu_caption }}</td>
+                <td>
+                    {{ form.caption(size=50) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].submenu_caption_en }}</td>
+                <td>
+                    {{ form.caption_en(size=50) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].submenu_menu_selection }}</td>
+                <td>
+                    {{ form.menu }}
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="{{ const[session['lang']].save_changes }}"></td>
+            </tr>
+        </table>
+<br>
+<br>
+<br>
+        <table id="aligncenter">
+            <tr>
+                <th>ID</th>
+                <th>{{ const[session['lang']].submenu_sequence }}</th>
+                <th>{{ const[session['lang']].submenu_link }}</th>
+                <th>{{ const[session['lang']].submenu_caption }}</th>
+                <th>{{ const[session['lang']].submenu_caption_en }}</th>
+                <th>{{ const[session['lang']].submenu_menu_selection }}</th>
+                <th>{{ const[session['lang']].edit }}</th>
+                <th>{{ const[session['lang']].delete }}</th>
+            </tr>
+            {% for sm in submenu %}
+            <tr>
+                <td>{{ sm.id }}</td>
+                <td>{{ sm.sequence }}</td>
+                <td>{{ sm.link }}</td>
+                <td>{{ sm.caption }}</td>
+                <td>{{ sm.caption_en }}</td>
+                <td>{{ sm.menu.caption }}</td>
+                <td>
+                    <a href="/admin/submenu/edit/{{sm.id}}">
+                        <img src="{{ url_for('static', filename='img/edit.png') }}" style="width: 50px; height: 50px;"/>
+                    </a>
+                </td>
+                <td>
+                    <a href="/admin/submenu/delete/{{sm.id}}">
+                        <img src="{{ url_for('static', filename='img/delete.png') }}" style="width: 50px; height: 50px;"/>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    {% include 'admin_panel.html' %}
+{% endblock %}

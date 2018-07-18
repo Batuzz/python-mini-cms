@@ -1,0 +1,54 @@
+<html>
+    <head>
+
+        <!-- META TAGS -->
+        <meta lang="PL"/>
+        <meta charset="UTF-8"/>
+        <meta name="description" content="" />
+        <meta name="author" content="Bartosz Studnik, Kacper Mandla" />
+        <meta name="keywords" content="" />
+        
+        <!-- CSS STYLESHEET -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}" />
+
+        <!-- FONTS -->
+       <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+        
+        <!-- DESCRIPTION -->
+        <title>{{ const[session['lang']].login_title }}</title>
+        <script type="text/javascript">
+            function set_openid(openid, pr) {
+                form = document.forms['login'];
+                form.elements['openid'].value = openid
+            }
+        </script>
+
+    </head>
+    <body>
+        <br><br><br><br><br>
+        <section id="box">
+            <form action="" method="post" name="login">
+            {{ form.hidden_tag() }}
+             <p>{{ const[session['lang']].login }}</p>
+                <section id="cat"><br>
+                    <div class="center">{{ form.openid(size=32) }}</div>
+                    {% for error in form.openid.errors %}
+                        <span style="color: red;">[{{error}}]</span>
+                    {% endfor %}
+                    <br>
+                    {% for pr in providers %}
+                        <div class="service">
+                            <br>
+                            <a href="javascript:set_openid('{{ pr.url }}', '{{ pr.name }}');">{{ pr.name }}</a>
+                        </div>
+                    {% endfor %}
+                    <div class="center">{{ form.remember_me }} {{ const[session['lang']].remember_me }}</div>
+                    <br>
+                    <div class="center">
+                        <input type="submit" value="{{ const[session['lang']].login }}!">
+                    </div>
+                </section>
+            </form>
+        </section>
+    </body>
+</html>

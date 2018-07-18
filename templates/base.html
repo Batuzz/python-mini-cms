@@ -1,0 +1,38 @@
+<html>
+    <head>
+
+        <!-- META TAGS -->
+        <meta lang="PL"/>
+        <meta charset="UTF-8"/>
+        <meta name="description" content="" />
+        <meta name="author" content="Bartosz Studnik, Kacper Mandla" />
+        <meta name="keywords" content="" />
+
+        <!-- CSS STYLESHEET -->
+        {% if css_name %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename=css_name) }}" />
+        {% else %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/css.css') }}" />
+        {% endif %}
+
+
+        <!-- FONTS -->
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+        <!-- DESCRIPTION -->
+        {% if title %}
+            <title>{{ title }}</title>
+        {% else %}
+            <title>{{ const[session['lang']].main_title }}</title>
+        {% endif %}
+    </head>
+    <body>
+        {% include 'menu.html' %}
+        <section class="spacer">
+        </section>
+
+        {% block content %}{% endblock %}
+        {% include 'footer.html' %}
+    </body>
+</html>

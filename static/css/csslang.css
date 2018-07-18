@@ -1,0 +1,31 @@
+body{
+    background-image: url(../img/metal-texture.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    font-family: 'Quicksand', sans-serif;
+    color:rgba(0, 0, 0, 0.2);
+}
+#buttony{
+    height:100%;
+    width: 50%;
+    margin:0 auto;
+    display: block;
+    text-align: center;
+}
+img{
+    height: 200px;
+    width: 200px;
+    font-size: 50px;
+    vertical-align: center;
+
+}
+hr{
+  width: 70%;
+}
+h1{
+    font-size: 50px;
+    margin:0 auto;
+    vertical-align: center;
+    text-align: center;
+}

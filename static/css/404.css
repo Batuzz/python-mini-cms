@@ -1,0 +1,32 @@
+@keyframes a{
+    0%{color: white;}
+    50%{color:rgba(255,255,255,0.2);}
+    100%{color: white;}
+}
+
+
+body{
+    margin: 0 auto;
+    background-color: black;
+    color: crimson;
+    font-family: 'Lobster', cursive;
+    text-align: center;
+}
+h1{
+    font-size: 80px;
+}
+h2{
+    font-size: 50px;
+}
+h3{
+    font-size: 40px;
+}
+a{
+    text-decoration: none;
+    color: crimson;
+    animation-name: a;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}

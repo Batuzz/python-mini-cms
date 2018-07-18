@@ -1,0 +1,64 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ const[session['lang']].quiz_question_edit }}</h1>
+    <form action="" method="post" name="edit_quiz_question">
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+                <td>{{ const[session['lang']].quiz_question_content }}</td>
+                <td>
+                    {{ form.question }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].quiz_question_content_en }}</td>
+                <td>
+                    {{ form.question_en }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].quiz_question_quiz_selection }}</td>
+                <td>
+                    {{ form.quiz }}
+                </td>
+            </tr>
+                <td></td>
+                <td><input type="submit" value="{{ const[session['lang']].save_changes }}"></td>
+            </tr>
+        </table>
+<br>
+<br>
+<br>
+        <table style="margin-left: 10%; margin-right: 10%;" id="aligncenter">
+            <tr>
+                <th>ID</th>
+                <th>{{ const[session['lang']].quiz_question_content }}</th>
+                <th>{{ const[session['lang']].quiz_question_content_en }}</th>
+                <th>{{ const[session['lang']].quiz_question_quiz_selection }}</th>
+                <th>{{ const[session['lang']].edit }}</th>
+                <th>{{ const[session['lang']].delete }}</th>
+            </tr>
+            {% for qq in quiz_question %}
+            <tr>
+                <td>{{ qq.id }}</td>
+                <td>{{ qq.question }}</td>
+                <td>{{ qq.question_en }}</td>
+                <td>{{ qq.quiz.name }}</td>
+                <td>
+                    <a href="/admin/quiz/question/edit/{{qq.id}}">
+                        <img src="{{ url_for('static', filename='img/edit.png') }}" style="width: 50px; height: 50px;"/>
+                    </a>
+                </td>
+                <td>
+                    <a href="/admin/quiz/question/delete/{{qq.id}}">
+                        <img src="{{ url_for('static', filename='img/delete.png') }}" style="width: 50px; height: 50px;"/>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    {% include 'admin_panel.html' %}
+{% endblock %}

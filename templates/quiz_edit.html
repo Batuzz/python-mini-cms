@@ -1,0 +1,58 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ const[session['lang']].quiz_edit }}</h1>
+  <form action="" method="post" name="edit">
+      {{form.hidden_tag()}}
+      <table>
+          <tr>
+                <td>{{ const[session['lang']].quiz_name }}</td>
+                <td>
+                    {{ form.name(size=50) }}
+                </td>
+          </tr>
+          <tr>
+                <td>{{ const[session['lang']].quiz_name_en }}</td>
+                <td>
+                    {{ form.name_en(size=50) }}
+                </td>
+          </tr>
+          <tr>
+              <td></td>
+              <td><input type="submit" value="{{ const[session['lang']].save_changes }}"></td>
+          </tr>
+      </table>
+<br>
+<br>
+<br>
+        <table id="aligncenter">
+        <tr>
+            <th>ID</th>
+            <th>{{ const[session['lang']].quiz_name }}</th>
+            <th>{{ const[session['lang']].quiz_name_en }}</th>
+            <th>{{ const[session['lang']].edit }}</th>
+            <th>{{ const[session['lang']].delete }}</th>
+        </tr>
+        {% for q in quiz %}
+            <tr>
+                <td>{{ q.id }}</td>
+                <td>{{ q.name }}</td>
+                <td>{{ q.name_en }}</td>
+                <td>
+                    <a href="/admin/quiz/edit/{{q.id}}">
+                        <img src="{{ url_for('static', filename='img/edit.png') }}" style="width: 50px; height: 50px;"/>
+                    </a>
+                </td>
+                <td>
+                    <a href="/admin/quiz/delete/{{q.id}}">
+                        <img src="{{ url_for('static', filename='img/delete.png') }}" style="width: 50px; height: 50px;"/>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+
+  </form>
+    {% include 'admin_panel.html' %}
+{% endblock %}

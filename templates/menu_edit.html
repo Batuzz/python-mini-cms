@@ -1,0 +1,81 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ const[session['lang']].menu_edit }}</h1>
+    <form action="" method="post" name="edit_menu">
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+                <td>{{ const[session['lang']].menu_sequence }}</td>
+                <td>
+                    {{ form.sequence(size=50)  }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].menu_link }}</td>
+                <td>
+                    {{ form.link(size=50)  }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].menu_type }}</td>
+                <td>
+                    {{ form.type }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].menu_caption }}</td>
+                <td>
+                    {{ form.caption(size=50) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ const[session['lang']].menu_caption_en }}</td>
+                <td>
+                    {{ form.caption_en(size=50) }}
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="{{ const[session['lang']].save_changes }}"></td>
+            </tr>
+        </table>
+<br>
+<br>
+<br>
+        <table id="aligncenter">
+            <tr>
+                <th>ID</th>
+                <th>{{ const[session['lang']].menu_sequence }}</th>
+                <th>{{ const[session['lang']].menu_link }}</th>
+                <th>{{ const[session['lang']].menu_type }}</th>
+                <th>{{ const[session['lang']].menu_caption }}</th>
+                <th>{{ const[session['lang']].menu_caption_en }}</th>
+                <th>{{ const[session['lang']].edit }}</th>
+                <th>{{ const[session['lang']].delete }}</th>
+            </tr>
+            {% for m in menu %}
+            <tr>
+                <td>{{ m.id }}</td>
+                <td>{{ m.sequence }}</td>
+                <td>{{ m.link }}</td>
+                <td>{{ m.type }}</td>
+                <td>{{ m.caption }}</td>
+                <td>{{ m.caption_en }}</td>
+                <td>
+                    <a href="/admin/menu/edit/{{m.id}}">
+                        <img src="{{ url_for('static', filename='img/edit.png') }}" style="width: 50px; height: 50px;"/>
+                    </a>
+                </td>
+                <td>
+                    <a href="/admin/menu/delete/{{m.id}}">
+                        <img src="{{ url_for('static', filename='img/delete.png') }}" style="width: 50px; height: 50px;"/>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    {% include 'admin_panel.html' %}
+{% endblock %}

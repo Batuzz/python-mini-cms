@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <section id="FirstFrontContent">
+            <div class="sectioncenter"><br><br><br><br><br><br>
+                <h1>{{ const[session['lang']].slogan }}</h1>
+            </div>
+        </section>
+
+        <section class="spacer">
+
+        </section>
+
+        <section id="content1">
+        <br>
+            {% if session['lang'] == 'pl' %}
+                <p> {{ page.title }}</p>
+                <br>
+                <span>{{ page.content }}</span>
+            {% else %}
+                <p> {{ page.title_en }}</p>
+                <br>
+                <span>{{ page.content_en }}</span>
+            {% endif %}
+            <br>
+        </section>
+    <section id="SecondFrontContent">
+    <div class="sectioncenter"><br><br><br><br><br><br>
+        <h1>{{ const[session['lang']].are_you_sure }}</h1>
+    </div>
+</section>
+{% endblock %}
